@@ -1,0 +1,17 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - data/raw/data.csv
+    - src/prepare.py
+    outs:
+    - data/processed:
+        cache: false
+  train:
+    cmd: python src/train.py
+    deps:
+    - data/processed
+    - src/train.py
+    outs:
+    - model.pkl:
+        cache: false
